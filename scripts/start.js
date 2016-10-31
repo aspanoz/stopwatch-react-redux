@@ -10,12 +10,9 @@ var detect = require('./utils/detectPort');
 var prompt = require('./utils/prompt');
 var config = require('../config/webpack.config.dev');
 
-// Tools like Cloud9 rely on this
 var DEFAULT_PORT = process.env.PORT || 3000;
 var compiler;
 
-// TODO: hide this behind a flag and eliminate dead code on eject.
-// This shouldn't be exposed to the user.
 var handleCompile;
 var isSmokeTest = process.argv.some(arg => arg.indexOf('--smoke-test') > -1);
 if (isSmokeTest) {
@@ -34,25 +31,17 @@ function isLikelyASyntaxError(message) {
   return message.indexOf(friendlySyntaxErrorLabel) !== -1;
 }
 
-// This is a little hacky.
-// It would be easier if webpack provided a rich error object.
-
 function formatMessage(message) {
   return message
-    // Make some common errors shorter:
     .replace(
-      // Babel syntax error
       'Module build failed: SyntaxError:',
       friendlySyntaxErrorLabel
     )
     .replace(
-      // Webpack file not found error
       /Module not found: Error: Cannot resolve 'file' or 'directory'/,
       'Module not found:'
     )
-    // Internal stacks are generally useless so we strip them
-    .replace(/^\s*at\s.*:\d+:\d+[\s\)]*\n/gm, '') // at ... ...:x:y
-    // Webpack loader names obscure CSS filenames
+    .replace(/^\s*at\s.*:\d+:\d+[\s\)]*\n/gm, '')
     .replace('./~/css-loader!./~/postcss-loader!', '');
 }
 
@@ -92,16 +81,12 @@ function setupCompiler(port) {
       console.log(chalk.red('Failed to compile.'));
       console.log();
       if (formattedErrors.some(isLikelyASyntaxError)) {
-        // If there are any syntax errors, show just them.
-        // This prevents a confusing ESLint parsing error
-        // preceding a much more useful Babel syntax error.
         formattedErrors = formattedErrors.filter(isLikelyASyntaxError);
       }
       formattedErrors.forEach(message => {
         console.log(message);
         console.log();
       });
-      // If errors exist, ignore warnings.
       return;
     }
 
@@ -123,8 +108,6 @@ function setupCompiler(port) {
 function openBrowser(port) {
   if (process.platform === 'darwin') {
     try {
-      // Try our best to reuse existing tab
-      // on OS X Google Chrome with AppleScript
       execSync('ps cax | grep "Google Chrome"');
       execSync(
         'osascript ' +
@@ -133,18 +116,15 @@ function openBrowser(port) {
       );
       return;
     } catch (err) {
-      // Ignore errors.
     }
   }
-  // Fallback to opn
-  // (It will always open new tab)
   opn('http://localhost:' + port + '/');
 }
 
 function runDevServer(port) {
   new WebpackDevServer(compiler, {
     historyApiFallback: true,
-    hot: true, // Note: only CSS is currently hot reloaded
+    hot: true,
     publicPath: config.output.publicPath,
     quiet: true,
     watchOptions: {

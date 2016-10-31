@@ -8,7 +8,7 @@ import Stopwatch from './Stopwatch';
 import '../styles.css';
 
 class StopwatchList extends Component {
-  render() {
+  render () {
     const {
       delStopwatch,
       delStopwatchLaps,
@@ -21,36 +21,37 @@ class StopwatchList extends Component {
       <div>
         <div className="header">СЕКУНДОМЕРЫ</div>
         <div className="stopwatchList">
-          {stopwatch.items.map((item, i) => 
+          {stopwatch.items.map((item, i) =>
             <Stopwatch
               key={i}
               stopwatch={item}
               delStopwatch={delStopwatch}
               delStopwatchLaps={delStopwatchLaps}
-            />  
+            />
           )}
         </div>
         <div className="footer">
           <StopwatchAdd
             addStopwatch={addStopwatch}
             setStopwatchLaps={setStopwatchLaps}
+            stopwatch={stopwatch.items}
           />
         </div>
       </div>
     );
   }
-};
+}
 
-function mapStateToProps(state, props) {
+function mapStateToProps (state, props) {
   return {
     stopwatch: state.stopwatch
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(Actions, dispatch)
-  }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopwatchList);

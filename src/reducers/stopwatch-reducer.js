@@ -2,7 +2,7 @@ import * as types from '../actions/action-types';
 
 const initialState = {
   items: []
-}
+};
 
 let index = null;
 let newItem = {};
@@ -11,12 +11,21 @@ export default (state = initialState, actions) => {
   switch (actions.type) {
 
     case types.ADD_STOPWATCH:
+      const ru = 'АБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧЩЫЭЮЯ';
+      const radix = '0123456789abcdefghijklmnopqrs';
+      const title = actions.payload
+        .toString(29)
+        .split('')
+        .map((e) => ru.charAt(radix.indexOf(e)))
+      .join('');
+
+      newItem = {id: actions.payload, title: `Забег ${title}`, time: 0};
       return {
         items: [
           ...state.items,
-          Object.assign({}, actions.payload)
+          Object.assign({}, newItem)
         ]
-      }
+      };
 
     case types.DEL_STOPWATCH:
       index = state.items.findIndex((e) => e.id === actions.payload);
@@ -24,19 +33,19 @@ export default (state = initialState, actions) => {
         items: [
           ...state.items.slice(0, index).concat(state.items.slice(index + 1))
         ]
-      }
+      };
 
     case types.SET_STOPWATCH_BEST_TIME:
       index = actions.payload.index;
       newItem = {
         ...state.items[index],
         time: actions.payload.time
-      }
+      };
       return {
         items: [
           ...state.items.slice(0, index).concat(newItem, state.items.slice(index + 1))
         ]
-      }
+      };
 
     default:
       return state;

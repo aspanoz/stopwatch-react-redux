@@ -1,15 +1,10 @@
-// TODO: we can split this file into several files (pre-eject, post-eject, test)
-// and use those instead. This way we don't need to branch here.
-
 var path = require('path');
 
-// True after ejecting, false when used as a dependency
 var isEjected = (
   path.resolve(path.join(__dirname, '..')) ===
   path.resolve(process.cwd())
 );
 
-// Are we developing create-react-app locally?
 var isInCreateReactAppSource = (
   process.argv.some(arg => arg.indexOf('--debug-template') > -1)
 );
@@ -23,7 +18,6 @@ function resolveApp(relativePath) {
 }
 
 if (isInCreateReactAppSource) {
-  // create-react-app development: we're in ./config/
   module.exports = {
     appBuild: resolveOwn('../build'),
     appHtml: resolveOwn('../template/index.html'),
@@ -34,7 +28,6 @@ if (isInCreateReactAppSource) {
     ownNodeModules: resolveOwn('../node_modules')
   };
 } else if (!isEjected) {
-  // before eject: we're in ./node_modules/react-scripts/config/
   module.exports = {
     appBuild: resolveApp('build'),
     appHtml: resolveApp('index.html'),
@@ -42,11 +35,9 @@ if (isInCreateReactAppSource) {
     appPackageJson: resolveApp('package.json'),
     appSrc: resolveApp('src'),
     appNodeModules: resolveApp('node_modules'),
-    // this is empty with npm3 but node resolution searches higher anyway:
     ownNodeModules: resolveOwn('../node_modules')
   };
 } else {
-  // after eject: we're in ./config/
   module.exports = {
     appBuild: resolveApp('build'),
     appHtml: resolveApp('index.html'),
