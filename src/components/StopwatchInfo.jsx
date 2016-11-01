@@ -8,7 +8,7 @@ import StopwatchActionStop from './StopwatchActionStop';
 import FormatedTime from './FormatedTime';
 
 import * as Actions from '../actions/actions';
-import '../styles.css';
+import styles from '../styles.css';
 
 let interval = null;
 let lapIndex = null;
@@ -88,34 +88,40 @@ class StopwatchInfo extends Component {
     const laps = this.props.laps.items[lapIndex];
 
     return (
-      <div>
-        <div className="header">
-          <div className="header-flex">
-            <Link to="/" onClick={() => this.goBackButton()}>&lt; НАЗАД</Link>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.headerContainer}>
+            <Link
+              to="/"
+              className={styles.goBack}
+              onClick={() => this.goBackButton()}
+            >
+              &lt; НАЗАД
+            </Link>
             <span>СЕКУНДОМЕРЫ</span>
           </div>
         </div>
-        <div className="laps-container">
-          <div className="stopwatchInfo-title">{stopwatch.title}</div>
-          <div className="counter">
+        <div className={styles.counterContainer}>
+          <div className={styles.stopwatchInfoTitle}>{stopwatch.title}</div>
+          <div className={styles.counter}>
             <FormatedTime time={laps.time - laps.currenttime}/>
           </div>
           <div>
             {this.stopwatchActions()}
           </div>
-          <div className="laps">
-            {laps.laps.map((lap, i) =>
-              <StopwatchLap
-                key={i}
-                lapNumber={i + 1}
-                lap={lap}
-                timeline={90 * lap / laps.laps.reduce((p, v) => p > v ? p : v, lap)}
-                bestTime={stopwatch.time}
-                index={stopwatchIndex}
-                setStopwatchBestTime={setStopwatchBestTime}
-              />
-            )}
-          </div>
+        </div>
+        <div className={styles.laps}>
+          {laps.laps.map((lap, i) =>
+            <StopwatchLap
+              key={i}
+              lapNumber={i + 1}
+              lap={lap}
+              timeline={90 * lap / laps.laps.reduce((p, v) => p > v ? p : v, lap)}
+              bestTime={stopwatch.time}
+              index={stopwatchIndex}
+              setStopwatchBestTime={setStopwatchBestTime}
+            />
+          )}
         </div>
       </div>
     );

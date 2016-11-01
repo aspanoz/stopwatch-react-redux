@@ -1,5 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import FormatedTime from './FormatedTime';
+import styles from '../styles.css';
 
 export default class StopwatchLap extends Component {
   render () {
@@ -14,12 +15,15 @@ export default class StopwatchLap extends Component {
 
     return (
       <div
-        className={lap === bestTime ? 'lap besttime' : 'lap justlap'}
+        className={lap === bestTime
+          ? `${styles.lap} ${styles.besttime}`
+          : `${styles.lap} ${styles.justlap}`
+        }
         onClick={() => setStopwatchBestTime({index: index, time: lap})}
         title="Кликни, чтобы установить лучшее время"
       >
         <span>{lapNumber}. <FormatedTime time={lap}/></span>
-        <span className="timeline">
+        <span className={styles.timeline}>
           <span style={{width: `${timeline}px`}}/>
         </span>
       </div>

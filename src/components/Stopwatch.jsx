@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import {Link} from 'react-router';
 import FormatedTime from './FormatedTime';
-import '../styles.css';
+import styles from '../styles.css';
 
 export default class Stopwatch extends Component {
 
@@ -25,13 +25,13 @@ export default class Stopwatch extends Component {
     const stopwatch = this.props.stopwatch;
 
     return (
-      <div className="stopwatch">
-        <Link className="stopwatchInfo" to={`/stopwatch/${stopwatch.id}`}>
-          <div className="stopwatchInfo-title">{stopwatch.title}</div>
-          <div className="stopwatchInfo-lap">{this.isRenderBestLap(stopwatch.time)}</div>
+      <div className={styles.stopwatch}>
+        <Link className={styles.stopwatchInfo} to={`/stopwatch/${stopwatch.id}`}>
+          <div className={styles.stopwatchInfoTitle}>{stopwatch.title}</div>
+          <div className={styles.stopwatchInfoLap}>{this.isRenderBestLap(stopwatch.time)}</div>
         </Link>
         <button
-          className="action-button red"
+          className={`${styles.buttonSmall} ${styles.buttonRed}`}
           onClick={() => this.deleteStopwatchAndLaps(stopwatch.id)}
         >
           УДАЛИТЬ

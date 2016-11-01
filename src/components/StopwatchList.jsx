@@ -5,7 +5,7 @@ import * as Actions from '../actions/actions';
 
 import StopwatchAdd from './StopwatchAdd';
 import Stopwatch from './Stopwatch';
-import '../styles.css';
+import styles from '../styles.css';
 
 class StopwatchList extends Component {
   render () {
@@ -18,9 +18,9 @@ class StopwatchList extends Component {
     const {stopwatch} = this.props;
 
     return (
-      <div>
-        <div className="header">СЕКУНДОМЕРЫ</div>
-        <div className="stopwatchList">
+      <div className={styles.container}>
+        <div className={styles.header}>СЕКУНДОМЕРЫ</div>
+        <div className={styles.stopwatchList}>
           {stopwatch.items.map((item, i) =>
             <Stopwatch
               key={i}
@@ -30,7 +30,7 @@ class StopwatchList extends Component {
             />
           )}
         </div>
-        <div className="footer">
+        <div className={styles.footer}>
           <StopwatchAdd
             addStopwatch={addStopwatch}
             setStopwatchLaps={setStopwatchLaps}

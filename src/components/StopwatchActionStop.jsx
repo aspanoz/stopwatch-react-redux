@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import styles from '../styles.css';
 
 export default class StopwatchActionStop extends Component {
 
@@ -29,13 +30,13 @@ export default class StopwatchActionStop extends Component {
     return (
       <div>
         <button
-          className="action-button red action-button-margin"
+          className={`${styles.buttonSmall} ${styles.buttonRed} ${styles.buttonMargin}`}
           onClick={() => this.clearStoredLaps()}
         >
           СБРОС
         </button>
         <button
-          className="action-button green action-button-margin"
+          className={`${styles.buttonSmall} ${styles.buttonGreen} ${styles.buttonMargin}`}
           onClick={() => stopwatchStart({index: lapIndex})}
         >
           СТАРТ

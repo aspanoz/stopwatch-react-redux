@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import styles from '../styles.css';
 
 export default class StopwatchActionStart extends Component {
   addLap (lapTime) {
@@ -33,15 +34,15 @@ export default class StopwatchActionStart extends Component {
     } = this.props;
 
     return (
-      <div className="stopwatch-buttons">
+      <div>
         <button
-          className="action-button green action-button-margin"
+          className={`${styles.buttonSmall} ${styles.buttonGreen} ${styles.buttonMargin}`}
           onClick={() => this.addLap(laptime)}
         >
           КРУГ
         </button>
         <button
-          className="action-button red action-button-margin"
+          className={`${styles.buttonSmall} ${styles.buttonRed} ${styles.buttonMargin}`}
           onClick={() => stopwatchStop({index: lapIndex})}
         >
           СТОП

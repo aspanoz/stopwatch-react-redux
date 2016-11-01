@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import styles from '../styles.css';
 
 export default class StopwatchAdd extends Component {
 
@@ -18,14 +19,12 @@ export default class StopwatchAdd extends Component {
 
   render () {
     return (
-      <div>
-        <button
-          className="addStopwatch green"
-          onClick={() => this.addStopwatchClick()}
-        >
-          ДОБАВИТЬ НОВЫЙ
-        </button>
-      </div>
+      <button
+        className={`${styles.buttonFullWidth} ${styles.buttonGreen}`}
+        onClick={() => this.addStopwatchClick()}
+      >
+        ДОБАВИТЬ НОВЫЙ
+      </button>
     );
   }
 }

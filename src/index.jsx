@@ -3,8 +3,6 @@ import { render } from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, hashHistory} from 'react-router';
 
-import './styles.css';
-
 import StopwatchList from './components/StopwatchList';
 import StopwatchInfo from './components/StopwatchInfo';
 import configureStore from './store/configure-store';
