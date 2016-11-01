@@ -43,7 +43,7 @@ class StopwatchInfo extends Component {
         interval = setInterval(() => setCurrentTime({
           time: Date.now(),
           index: lapIndex
-        }));
+        }), 1);
       }
       return (
         <StopwatchActionStart
