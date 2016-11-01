@@ -1,10 +1,12 @@
 import * as types from '../actions/action-types';
 
 const initialState = {
+  stopwatchId: 0,
   items: []
 };
 
 let index = null;
+let stopwatchId = null;
 let newItem = {};
 
 export default (state = initialState, actions) => {
@@ -13,14 +15,15 @@ export default (state = initialState, actions) => {
     case types.ADD_STOPWATCH:
       const ru = 'АБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧЩЫЭЮЯ';
       const radix = '0123456789abcdefghijklmnopqrs';
-      const title = actions.payload
+      const title = state.stopwatchId
         .toString(29)
         .split('')
         .map((e) => ru.charAt(radix.indexOf(e)))
       .join('');
 
-      newItem = {id: actions.payload, title: `Забег ${title}`, time: 0};
+      newItem = {id: state.stopwatchId, title: `Забег ${title}`, time: 0};
       return {
+        stopwatchId: state.stopwatchId + 1,
         items: [
           ...state.items,
           Object.assign({}, newItem)
@@ -28,20 +31,25 @@ export default (state = initialState, actions) => {
       };
 
     case types.DEL_STOPWATCH:
-      index = state.items.findIndex((e) => e.id === actions.payload);
+      index = state.items.findIndex((e) => e.id === actions.id);
+      stopwatchId = state.stopwatchId === actions.id + 1
+        ? state.stopwatchId - 1
+        : state.stopwatchId;
       return {
+        stopwatchId: stopwatchId,
         items: [
           ...state.items.slice(0, index).concat(state.items.slice(index + 1))
         ]
       };
 
     case types.SET_STOPWATCH_BEST_TIME:
-      index = actions.payload.index;
+      index = actions.index;
       newItem = {
         ...state.items[index],
-        time: actions.payload.time
+        time: actions.time
       };
       return {
+        stopwatchId: state.stopwatchId,
         items: [
           ...state.items.slice(0, index).concat(newItem, state.items.slice(index + 1))
         ]

@@ -79,7 +79,7 @@ class StopwatchInfo extends Component {
       clearInterval(interval);
       interval = null;
     }
-    stopwatchStop({index: lapIndex});
+    stopwatchStop(lapIndex);
   }
 
   render () {

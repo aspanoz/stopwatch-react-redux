@@ -11,7 +11,7 @@ export default (state = initialState, actions) => {
   switch (actions.type) {
 
     case types.STOPWATCH_START:
-      index = actions.payload.index;
+      index = actions.index;
       newItem = {
         ...state.items[index],
         isStart: true,
@@ -25,7 +25,7 @@ export default (state = initialState, actions) => {
       };
 
     case types.STOPWATCH_STOP:
-      index = actions.payload.index;
+      index = actions.index;
       newItem = {
         ...state.items[index],
         isStart: false,
@@ -40,10 +40,10 @@ export default (state = initialState, actions) => {
       };
 
     case types.SET_CURRENT_TIME:
-      index = actions.payload.index;
+      index = actions.index;
       newItem = {
         ...state.items[index],
-        time: actions.payload.time
+        time: actions.time
       };
       return {
         items: [
@@ -56,7 +56,7 @@ export default (state = initialState, actions) => {
         items: [
           ...state.items,
           Object.assign({}, {
-            id: actions.payload,
+            id: actions.id,
             laps: [],
             currenttime: 0,
             time: 0,
@@ -67,7 +67,7 @@ export default (state = initialState, actions) => {
       };
 
     case types.DEL_STOPWATCH_LAPS:
-      index = state.items.findIndex((e) => e.id === actions.payload);
+      index = state.items.findIndex((e) => e.id === actions.id);
       return {
         items: [
           ...state.items.slice(0, index).concat(state.items.slice(index + 1))
@@ -75,11 +75,11 @@ export default (state = initialState, actions) => {
       };
 
     case types.ADD_STOPWATCH_LAP:
-      index = actions.payload.index;
+      index = actions.index;
       newItem = {
         ...state.items[index],
-        laps: [...state.items[index].laps, actions.payload.lap],
-        laptime: actions.payload.time
+        laps: [...state.items[index].laps, actions.lap],
+        laptime: actions.time
       };
       return {
         items: [
@@ -88,7 +88,7 @@ export default (state = initialState, actions) => {
       };
 
     case types.CLEAR_STOPWATCH_LAPS:
-      index = actions.payload.index;
+      index = actions.index;
       newItem = {
         ...state.items[index],
         laps: []

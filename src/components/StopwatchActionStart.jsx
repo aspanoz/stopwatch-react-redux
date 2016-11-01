@@ -43,7 +43,7 @@ export default class StopwatchActionStart extends Component {
         </button>
         <button
           className={`${styles.buttonSmall} ${styles.buttonRed} ${styles.buttonMargin}`}
-          onClick={() => stopwatchStop({index: lapIndex})}
+          onClick={() => stopwatchStop(lapIndex)}
         >
           СТОП
         </button>

@@ -7,13 +7,10 @@ export default class StopwatchAdd extends Component {
     const {
       setStopwatchLaps,
       addStopwatch,
-      stopwatch
+      id
     } = this.props;
 
-    const id = stopwatch
-      .reduce((p, v) => p.id > v.id ? p.id + 1 : v.id + 1, 0);
-
-    addStopwatch(id);
+    addStopwatch();
     setStopwatchLaps(id);
   }
 
@@ -30,7 +27,7 @@ export default class StopwatchAdd extends Component {
 }
 
 StopwatchAdd.propTypes = {
-  stopwatch: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
   addStopwatch: PropTypes.func.isRequired,
   setStopwatchLaps: PropTypes.func.isRequired
 };

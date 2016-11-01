@@ -1,71 +1,74 @@
 import * as types from './action-types';
 
-export const addStopwatch = (value) => {
+export const addStopwatch = () => {
   return {
-    type: types.ADD_STOPWATCH,
-    payload: value
+    type: types.ADD_STOPWATCH
   };
 };
 
-export const delStopwatch = (value) => {
+export const delStopwatch = (id) => {
   return {
     type: types.DEL_STOPWATCH,
-    payload: value
+    id: id
   };
 };
 
 export const setStopwatchBestTime = (value) => {
   return {
     type: types.SET_STOPWATCH_BEST_TIME,
-    payload: value
+    time: value.time,
+    index: value.index
   };
 };
 
-export const stopwatchStart = (value) => {
+export const stopwatchStart = (index) => {
   return {
     type: types.STOPWATCH_START,
-    payload: value
+    index: index
   };
 };
 
-export const stopwatchStop = (value) => {
+export const stopwatchStop = (index) => {
   return {
     type: types.STOPWATCH_STOP,
-    payload: value
+    index: index
   };
 };
 
 export const addStopwatchLap = (value) => {
   return {
     type: types.ADD_STOPWATCH_LAP,
-    payload: value
+    time: value.time,
+    lap: value.lap,
+    index: value.index
   };
 };
 
-export const clearStopwatchLaps = (value) => {
+export const clearStopwatchLaps = (index) => {
   return {
     type: types.CLEAR_STOPWATCH_LAPS,
-    payload: value
+    index: index
   };
 };
 
 export const setCurrentTime = (value) => {
   return {
     type: types.SET_CURRENT_TIME,
-    payload: value
+    time: value.time,
+    index: value.index
   };
 };
 
-export const setStopwatchLaps = (value) => {
+export const setStopwatchLaps = (id) => {
   return {
     type: types.SET_STOPWATCH_LAPS,
-    payload: value
+    id: id
   };
 };
 
-export const delStopwatchLaps = (value) => {
+export const delStopwatchLaps = (id) => {
   return {
     type: types.DEL_STOPWATCH_LAPS,
-    payload: value
+    id: id
   };
 };

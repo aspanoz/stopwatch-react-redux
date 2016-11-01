@@ -34,7 +34,7 @@ class StopwatchList extends Component {
           <StopwatchAdd
             addStopwatch={addStopwatch}
             setStopwatchLaps={setStopwatchLaps}
-            stopwatch={stopwatch.items}
+            id={stopwatch.stopwatchId}
           />
         </div>
       </div>

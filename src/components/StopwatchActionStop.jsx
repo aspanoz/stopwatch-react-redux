@@ -11,9 +11,7 @@ export default class StopwatchActionStop extends Component {
       clearStopwatchLaps
     } = this.props;
 
-    clearStopwatchLaps({
-      index: lapIndex
-    });
+    clearStopwatchLaps(lapIndex);
 
     setStopwatchBestTime({
       index: stopwatchIndex,
@@ -37,7 +35,7 @@ export default class StopwatchActionStop extends Component {
         </button>
         <button
           className={`${styles.buttonSmall} ${styles.buttonGreen} ${styles.buttonMargin}`}
-          onClick={() => stopwatchStart({index: lapIndex})}
+          onClick={() => stopwatchStart(lapIndex)}
         >
           СТАРТ
         </button>
