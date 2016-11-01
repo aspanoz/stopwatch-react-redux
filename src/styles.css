@@ -18,13 +18,6 @@
   }
 }
 
-@media (max-width: 290px) {
-  .container {
-    overflow-x: scroll;
-    background-color: tomato;
-  }
-}
-
 .header {
   background-color: #00beff;
   height: 20px;

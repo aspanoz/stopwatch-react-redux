@@ -116,7 +116,7 @@ class StopwatchInfo extends Component {
               key={i}
               lapNumber={i + 1}
               lap={lap}
-              timeline={90 * lap / laps.laps.reduce((p, v) => p > v ? p : v, lap)}
+              timeline={lap / laps.laps.reduce((p, v) => p > v ? p : v, lap)}
               bestTime={stopwatch.time}
               index={stopwatchIndex}
               setStopwatchBestTime={setStopwatchBestTime}

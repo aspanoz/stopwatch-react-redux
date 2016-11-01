@@ -24,7 +24,7 @@ export default class StopwatchLap extends Component {
       >
         <span>{lapNumber}. <FormatedTime time={lap}/></span>
         <span className={styles.timeline}>
-          <span style={{width: `${timeline}px`}}/>
+          <span style={{width: `calc((100% - 150px) * ${timeline})`}}/>
         </span>
       </div>
     );
