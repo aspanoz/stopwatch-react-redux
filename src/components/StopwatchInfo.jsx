@@ -83,7 +83,7 @@ class StopwatchInfo extends Component {
   }
 
   render () {
-    const setStopwatchBestTime = this.props.actions.setStopwatchBestTime;
+    const manualSetStopwatchBestTime = this.props.actions.manualSetStopwatchBestTime;
     const stopwatch = this.props.stopwatch.items[stopwatchIndex];
     const laps = this.props.laps.items[lapIndex];
 
@@ -116,10 +116,10 @@ class StopwatchInfo extends Component {
               key={i}
               lapNumber={i + 1}
               lap={lap}
-              timeline={lap / laps.laps.reduce((p, v) => p > v ? p : v, lap)}
+              timeline={lap / laps.maxLapTime}
               bestTime={stopwatch.time}
               index={stopwatchIndex}
-              setStopwatchBestTime={setStopwatchBestTime}
+              manualSetStopwatchBestTime={manualSetStopwatchBestTime}
             />
           )}
         </div>

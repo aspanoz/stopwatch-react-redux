@@ -5,7 +5,7 @@ import styles from '../styles.css';
 export default class StopwatchLap extends Component {
   render () {
     const {
-      setStopwatchBestTime,
+      manualSetStopwatchBestTime,
       lap,
       bestTime,
       index,
@@ -19,12 +19,12 @@ export default class StopwatchLap extends Component {
           ? `${styles.lap} ${styles.besttime}`
           : `${styles.lap} ${styles.justlap}`
         }
-        onClick={() => setStopwatchBestTime({index: index, time: lap})}
+        onClick={() => manualSetStopwatchBestTime({index: index, time: lap})}
         title="Кликни, чтобы установить лучшее время"
       >
         <span>{lapNumber}. <FormatedTime time={lap}/></span>
         <span className={styles.timeline}>
-          <span style={{width: `calc((100% - 150px) * ${timeline})`}}/>
+          <span style={{width: `calc((100% - 160px) * ${timeline})`}}/>
         </span>
       </div>
     );
@@ -32,7 +32,7 @@ export default class StopwatchLap extends Component {
 }
 
 StopwatchLap.propTypes = {
-  setStopwatchBestTime: PropTypes.func.isRequired,
+  manualSetStopwatchBestTime: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   bestTime: PropTypes.number.isRequired,
   timeline: PropTypes.number.isRequired,

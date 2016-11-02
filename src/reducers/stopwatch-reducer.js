@@ -30,7 +30,7 @@ export default (state = initialState, actions) => {
         ]
       };
 
-    case types.DEL_STOPWATCH:
+    case types.DELETE_STOPWATCH:
       index = state.items.findIndex((e) => e.id === actions.id);
       stopwatchId = state.stopwatchId === actions.id + 1
         ? state.stopwatchId - 1
@@ -43,6 +43,21 @@ export default (state = initialState, actions) => {
       };
 
     case types.SET_STOPWATCH_BEST_TIME:
+      index = actions.index;
+      newItem = {
+        ...state.items[index],
+        time: (state.items[index].time === 0 || actions.time < state.items[index].time)
+          ? actions.time
+          : state.items[index].time
+      };
+      return {
+        stopwatchId: state.stopwatchId,
+        items: [
+          ...state.items.slice(0, index).concat(newItem, state.items.slice(index + 1))
+        ]
+      };
+
+    case types.MANUAL_SET_STOPWATCH_BEST_TIME:
       index = actions.index;
       newItem = {
         ...state.items[index],

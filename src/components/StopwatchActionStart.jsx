@@ -22,7 +22,7 @@ export default class StopwatchActionStart extends Component {
 
     setStopwatchBestTime({
       index: stopwatchIndex,
-      time: laps.reduce((p, v) => p < v ? p : v, currentValue)
+      time: currentValue
     });
   }
 

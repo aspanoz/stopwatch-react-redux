@@ -6,9 +6,9 @@ export const addStopwatch = () => {
   };
 };
 
-export const delStopwatch = (id) => {
+export const deleteStopwatch = (id) => {
   return {
-    type: types.DEL_STOPWATCH,
+    type: types.DELETE_STOPWATCH,
     id: id
   };
 };
@@ -16,6 +16,14 @@ export const delStopwatch = (id) => {
 export const setStopwatchBestTime = (value) => {
   return {
     type: types.SET_STOPWATCH_BEST_TIME,
+    time: value.time,
+    index: value.index
+  };
+};
+
+export const manualSetStopwatchBestTime = (value) => {
+  return {
+    type: types.MANUAL_SET_STOPWATCH_BEST_TIME,
     time: value.time,
     index: value.index
   };
@@ -66,9 +74,9 @@ export const setStopwatchLaps = (id) => {
   };
 };
 
-export const delStopwatchLaps = (id) => {
+export const deleteStopwatchLaps = (id) => {
   return {
-    type: types.DEL_STOPWATCH_LAPS,
+    type: types.DELETE_STOPWATCH_LAPS,
     id: id
   };
 };

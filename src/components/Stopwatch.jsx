@@ -7,12 +7,12 @@ export default class Stopwatch extends Component {
 
   deleteStopwatchAndLaps (id) {
     const {
-      delStopwatch,
-      delStopwatchLaps
+      deleteStopwatch,
+      deleteStopwatchLaps
     } = this.props;
 
-    delStopwatch(id);
-    delStopwatchLaps(id);
+    deleteStopwatch(id);
+    deleteStopwatchLaps(id);
   }
 
   isRenderBestLap (time) {
@@ -42,7 +42,7 @@ export default class Stopwatch extends Component {
 }
 
 Stopwatch.propTypes = {
-  delStopwatch: PropTypes.func.isRequired,
-  delStopwatchLaps: PropTypes.func.isRequired,
+  deleteStopwatch: PropTypes.func.isRequired,
+  deleteStopwatchLaps: PropTypes.func.isRequired,
   stopwatch: PropTypes.object.isRequired
 };

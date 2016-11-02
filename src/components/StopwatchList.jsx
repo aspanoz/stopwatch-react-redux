@@ -10,8 +10,8 @@ import styles from '../styles.css';
 class StopwatchList extends Component {
   render () {
     const {
-      delStopwatch,
-      delStopwatchLaps,
+      deleteStopwatch,
+      deleteStopwatchLaps,
       setStopwatchLaps,
       addStopwatch
     } = this.props.actions;
@@ -25,8 +25,8 @@ class StopwatchList extends Component {
             <Stopwatch
               key={i}
               stopwatch={item}
-              delStopwatch={delStopwatch}
-              delStopwatchLaps={delStopwatchLaps}
+              deleteStopwatch={deleteStopwatch}
+              deleteStopwatchLaps={deleteStopwatchLaps}
             />
           )}
         </div>

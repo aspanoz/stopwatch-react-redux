@@ -58,6 +58,7 @@ export default (state = initialState, actions) => {
           Object.assign({}, {
             id: actions.id,
             laps: [],
+            maxLapTime: 0,
             currenttime: 0,
             time: 0,
             laptime: 0,
@@ -66,7 +67,7 @@ export default (state = initialState, actions) => {
         ]
       };
 
-    case types.DEL_STOPWATCH_LAPS:
+    case types.DELETE_STOPWATCH_LAPS:
       index = state.items.findIndex((e) => e.id === actions.id);
       return {
         items: [
@@ -79,7 +80,10 @@ export default (state = initialState, actions) => {
       newItem = {
         ...state.items[index],
         laps: [...state.items[index].laps, actions.lap],
-        laptime: actions.time
+        laptime: actions.time,
+        maxLapTime: (actions.lap > state.items[index].maxLapTime)
+          ? actions.lap
+          : state.items[index].maxLapTime
       };
       return {
         items: [
